@@ -24,15 +24,15 @@ public class MultimediaManager {
 	private MediaPlayer player;
 
 	/**
-	 * s'il s'agit d'une location, la variable utilisation_ ne doit jamais √™tre
-	 * sup√©rieure √† maximum_
+	 * s'il s'agit d'une location, la variable utilisation_ ne doit jamais être
+	 * supérieure à maximum_
 	 * 
-	 * s'il s'agit d'une location, la variable d'instance maximum_ doit √™tre
-	 * sup√©rieure √† 0
+	 * s'il s'agit d'une location, la variable d'instance maximum_ doit être
+	 * supérieure à 0
 	 * 
 	 * s'il s'agit d'une location, la valeur de la variable d'instance
-	 * utilisation_ correspond √† la diff√©rence entre le nombre d'invocations des
-	 * m√©thodes pause() et stop() et le nombre d'invocations de la m√©thode
+	 * utilisation_ correspond à la différence entre le nombre d'invocations des
+	 * méthodes pause() et stop() et le nombre d'invocations de la méthode
 	 * resume()
 	 */
 
@@ -48,15 +48,15 @@ public class MultimediaManager {
 		this.contenu = contenu;
 
 		utilisation = 0;
-		etat = CREATED;
+		etat = (new createdState);
 	}
 
 	public void start() {
 
-		// cette m≈Ωthode ne peut ÔøΩtre invoqu≈Ωe
-		// que pour d≈Ωmarrer la lecture du document multim≈Ωdia
+		// cette méthode ne peut être invoquée
+		// que pour démarrer la lecture du document multimédia
 
-		if (utilisation == maximum) {
+		if (getUsage() == getMax()) {
 			return;
 		}
 
@@ -82,13 +82,13 @@ public class MultimediaManager {
 				etat = PLAYING;
 			}
 		}
-		// l'≈Ωtat de l'instance est PLAYING
+		// l'état de l'instance est PLAYING
 	}
 
 	public void pause() {
 
-		// l'instance doit ÔøΩtre dans l'≈Ωtat PLAYING
-		// pour que cette op≈Ωration soit valide
+		// l'instance doit être dans l'état PLAYING
+		// pour que cette opération soit valide
 
 		if (categorie == MUSIQUE) {
 			player.pause(titre, auteur, categorie, taille, contenu);
@@ -105,13 +105,13 @@ public class MultimediaManager {
 			}
 			etat = PAUSED;
 		}
-		// l'≈Ωtat de l'instance est PAUSED
-		// le nombre d'utilisation est incr≈Ωment≈Ωe de 1
+		// l'état de l'instance est PAUSED
+		// le nombre d'utilisation est incrémentée de 1
 	}
 
 	public void resume() {
 
-		// cette op≈Ωration n√ïest valide qu√ïaprÔøΩs une pause
+		// cette opération n’est valide qu’après une pause
 
 		if (location) {
 			utilisation = utilisation - 1;
@@ -124,13 +124,13 @@ public class MultimediaManager {
 			player.play(titre, auteur, categorie, taille, contenu);
 			etat = PLAYING;
 		}
-		// l'≈Ωtat de l'instance est PLAYING
-		// le nombre d'utilisation est d≈Ωcr≈Ωment≈Ωe de 1
+		// l'état de l'instance est PLAYING
+		// le nombre d'utilisation est décrémentée de 1
 	}
 
 	public void stop() {
 
-		// le contenu doit jouer pour que cette op≈Ωration soit valide
+		// le contenu doit jouer pour que cette opération soit valide
 
 		if (categorie == MUSIQUE) {
 			player.close(titre, auteur, categorie, taille, contenu);
@@ -148,8 +148,8 @@ public class MultimediaManager {
 			etat = STOPPED;
 		}
 
-		// l'≈Ωtat de l'instance est STOPPED
-		// le nombre d'utilisation est incr≈Ωment≈Ωe de 1
+		// l'état de l'instance est STOPPED
+		// le nombre d'utilisation est incrémentée de 1
 	}
 
 }

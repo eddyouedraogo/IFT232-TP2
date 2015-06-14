@@ -8,5 +8,5 @@ public interface MediaState{
 		public void resume(final MultimediaManager manager);
 		public void stop(final MultimediaManager manager);
 		
-		public int getState();
+		public MediaState getState();
 }

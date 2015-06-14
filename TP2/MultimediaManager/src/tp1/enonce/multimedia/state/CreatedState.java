@@ -26,7 +26,7 @@ public class CreatedState implements MediaState {
 	}
 
 	@Override
-	public int getState() {
+	public MediaState getState() {
 		return MultimediaManager.CREATED;
 	}
 }

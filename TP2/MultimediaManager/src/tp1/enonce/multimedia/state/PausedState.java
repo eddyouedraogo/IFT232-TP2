@@ -15,6 +15,7 @@ public class PausedState implements MediaState {
 
 	@Override
 	public void resume(final MultimediaManager manager) {
+		manager.initPlayer();
 		manager.getPlayer().play(manager.getTitle(), manager.getAuthor(), manager.getCategory(), manager.getSize(), manager.getContenu());
 		manager.decrementUsage();
 		manager.setState(new PlayingState());
@@ -22,13 +23,14 @@ public class PausedState implements MediaState {
 
 	@Override
 	public void stop(final MultimediaManager manager) {
+		manager.initPlayer();
 		manager.getPlayer().close(manager.getTitle(), manager.getAuthor(), manager.getCategory(), manager.getSize(), manager.getContenu());
 		manager.incrementUsage();
 		manager.setState(new StoppedState());
 	}
 
 	@Override
-	public int getState() {
+	public MediaState getState() {
 		return MultimediaManager.PAUSED;
 	}
 }

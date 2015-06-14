@@ -7,10 +7,10 @@ public class MultimediaManager {
 	final static String VIDEO = ".mov";
 	final static String MUSIQUE = ".mp3";
 	
-	public final static int CREATED = 1;
-	public final static int PAUSED = 2;
-	public final static int PLAYING = 3;
-	public final static int STOPPED = 4;
+	public final static MediaState CREATED = new CreatedState();
+	public final static MediaState PAUSED = new PausedState();
+	public final static MediaState PLAYING = new PlayingState();
+	public final static MediaState STOPPED = new StoppedState();
 
 	private MediaState state;
 	private int maximum;
@@ -80,7 +80,6 @@ public class MultimediaManager {
 	public void resume() {
 
 		// cette opération n'est valide qu'après une pause
-
 		state.resume(this);
 		
 		// l'état de l'instance est PLAYING
@@ -90,7 +89,6 @@ public class MultimediaManager {
 	public void stop() {
 
 		// le contenu doit jouer pour que cette opération soit valide
-
 		state.stop(this);
 
 		// l'état de l'instance est STOPPED
@@ -104,36 +102,19 @@ public class MultimediaManager {
 			setPlayer(QuickTime.PLAYER);
 	}
 	
-	int getState() {
+	MediaState getState() {
 		return state.getState();
 	}
 
 	public void setState(MediaState etat) {
 		this.state = etat;
 	}
-	
-	void setState(int state){
-		switch(state){
-			case CREATED:
-					this.state = new CreatedState();
-					break;
-			case PLAYING:
-					this.state = new PlayingState();
-					break;
-			case PAUSED:
-					this.state = new PausedState();
-					break;
-			case STOPPED:
-					this.state = new StoppedState();
-					break;
-		}
-	}
 
 	public int getMax() {
 		return maximum;
 	}
 
-	void setMaxm(int max) {
+	void setMax(int max) {
 		this.maximum = max;
 	}
 

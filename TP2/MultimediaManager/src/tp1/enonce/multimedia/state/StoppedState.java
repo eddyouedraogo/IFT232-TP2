@@ -5,6 +5,7 @@ import tp1.enonce.multimedia.MultimediaManager;
 public class StoppedState implements MediaState {
 	@Override
 	public void start(MultimediaManager manager) {
+		manager.initPlayer();
 		manager.getPlayer().play(manager.getTitle(), manager.getAuthor(), manager.getCategory(), manager.getSize(), manager.getContenu());
 		manager.setState(new PlayingState());
 	}
@@ -25,7 +26,7 @@ public class StoppedState implements MediaState {
 	}
 
 	@Override
-	public int getState() {
+	public MediaState getState() {
 		return MultimediaManager.STOPPED;
 	}
 }

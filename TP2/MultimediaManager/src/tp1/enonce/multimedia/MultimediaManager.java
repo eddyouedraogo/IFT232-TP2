@@ -1,3 +1,10 @@
+/*
+ * Modifier par
+ * Isaac Ouellet Therrien (14056950)
+ * Frédéric Carrier (14068395)
+ * 
+ */
+
 package tp1.enonce.multimedia;
 
 import tp1.enonce.multimedia.state.*;
